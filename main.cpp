@@ -35,8 +35,7 @@ public:
     void afis(ostream &out);
     friend istream& operator>>(istream &in,stivac& s);
     friend ostream& operator<<(ostream &out,stivac& x);
-    friend void operator-(stivac& s1, stivac& s2);
-
+    friend stivac& operator-(stivac& s1, stivac& s2);
 };
 stivac::stivac()
 {
@@ -143,7 +142,7 @@ void invers(char sir[])
     nou[i]=NULL;
     strcpy(sir,nou);
 }
-void operator-(stivac& s1, stivac& s2)
+stivac& operator-(stivac& s1, stivac& s2)
 {
     stivac* sfin=new stivac;
     int i,j;
@@ -164,8 +163,9 @@ void operator-(stivac& s1, stivac& s2)
             s1.pop();
             s2.pop();
         }
-   }
-  cout<<*sfin;
+    }
+    return *sfin;
+
 }
 
 void menu_output()
@@ -202,11 +202,15 @@ void menu()
         {
             cout<<"Numarul de stive citite: ";
             cin>>nr;
-            try{
-            s=new stivac[nr+1];
-            }catch(bad_alloc xa){
-            cout<<"Nu s-a putut aloca memorie";
-            exit(EXIT_FAILURE);}
+            try
+            {
+                s=new stivac[nr+2];
+            }
+            catch(bad_alloc xa)
+            {
+                cout<<"Nu s-a putut aloca memorie";
+                exit(EXIT_FAILURE);
+            }
             for(i=1; i<=nr; i++)
             {
                 cout<<endl<<"STIVA "<<i<<endl;
@@ -301,10 +305,11 @@ void menu()
                         cout<<"Stiva este vida"<<endl;
                 }
                 else
-                    cout<<"Nu exista aceasta stiva"<<endl;}
-                else
-                    cout<<"Nu a fost efectuata citirea"<<endl;
+                    cout<<"Nu exista aceasta stiva"<<endl;
             }
+            else
+                cout<<"Nu a fost efectuata citirea"<<endl;
+        }
 
         if(option==7)
         {
@@ -316,16 +321,20 @@ void menu()
                 int j;
                 cin>>j;
                 stivac *a=new stivac;
+
                 if(i<=7 && j<=7 &&i>0 &&j>0)
-                    {
-                        s[i]-s[j];
-                    }
+                {
+
+                        *a=s[i]-s[j];
+                        cout<<*a;
+
+                }
                 else
-                cout<<"Nu exista aceasta stiva"<<endl;
+                    cout<<"Nu exista aceasta stiva"<<endl;
             }
 
             else
-            cout<<"Nu a fost efectuata citirea"<<endl;
+                cout<<"Nu a fost efectuata citirea"<<endl;
         }
         system("pause");
         system("CLS");

@@ -1,6 +1,7 @@
 #include <iostream>
 #include<string.h>
 #include<stdlib.h>
+#include<bits/stdc++.h>
 using namespace std;
 class nod
 {
@@ -19,7 +20,7 @@ public:
         this->info='\0';
         this->next=NULL;
     }
-    nod(char c, nod *next)
+    nod(char info, nod *next)
     {
          this->info=info;
        this->next=next;

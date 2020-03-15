@@ -8,11 +8,21 @@ private:
     char info;
     nod* next;
 public:
-    nod(char info='\0',nod *next=NULL)
+//    nod(char info='\0',nod *next=NULL)
+//    {
+//        this->info=info;
+//        this->next=next;
+//
+//    }
+    nod()
     {
-        this->info=info;
-        this->next=next;
-
+        this->info='\0';
+        this->next=NULL;
+    }
+    nod(char c, nod *next)
+    {
+         this->info=info;
+       this->next=next;
     }
     ~nod()
     {
